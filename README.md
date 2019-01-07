@@ -12,7 +12,8 @@ This code repository implements a variety of **deep learning models** for **text
     3. [TextRNN](#3-textrnn)
     4. [TextBiRNN](#4-textbirnn)
     5. [TextAttBiRNN](#5-textattbirnn)
-    999. [To Be Continued](#to-be-continued)
+    6. [HAN](#6-han)
+    999. [To Be Continued...](#to-be-continued)
 4. [Reference](#reference)
 
 ## Environment
@@ -36,7 +37,9 @@ FastText was proposed in the paper [Bag of Tricks for Efficient Text Classificat
 
 #### 1.1 Description in Paper
 
-![FastText](image/FastText.png)
+<p align="center">
+	<img src="image/FastText.png">
+</p>
 
 1.	Using a look-up table, **bags of ngram** covert to **word representations**.
 2.	Word representations are **averaged** into a text representation, which is a hidden variable.
@@ -53,7 +56,9 @@ TextCNN was proposed in the paper [Convolutional Neural Networks for Sentence Cl
 
 #### 2.1 Description in Paper
 
-![TextCNN](image/TextCNN.png)
+<p align="center">
+	<img src="image/TextCNN.png">
+</p>
 
 1. Represent sentence with **static and non-static channels**.
 2. **Convolve** with multiple filter widths and feature maps.
@@ -70,7 +75,9 @@ TextRNN has been mentioned in the paper [Recurrent Neural Network for Text Class
 
 #### 3.1 Description in Paper
 
-![TextRNN](image/TextRNN.png)
+<p align="center">
+	<img src="image/TextRNN.png">
+</p>
 
 #### 3.2 Implementation Here
 
@@ -88,7 +95,9 @@ TextAttBiRNN is an improved model which introduces attention mechanism based on 
 
 #### 5.1 Description in Paper
 
-![FeedForwardAttention](image/FeedForwardAttention.png)
+<p align="center">
+	<img src="image/FeedForwardAttention.png">
+</p>
 
 In the paper [Feed-Forward Networks with Attention Can Solve Some Long-Term Memory Problems](https://arxiv.org/pdf/1512.08756.pdf), the **feed forward attention** is simplified as follows,
 
@@ -104,6 +113,30 @@ The implementation of attention is not described here, please refer to the sourc
 
 Network structure of TextAttBiRNN: Embedding -> BidirectionalRNN (BidirectionalLSTM/BidirectionalGRU) -> Attention -> FullyConnectedLayer -> Sigmoid/Softmax
 
+### 6 HAN
+
+HAN was proposed in the paper [Hierarchical Attention Networks for Document Classification](http://www.aclweb.org/anthology/N16-1174).
+
+#### 6.1 Description in Paper
+
+<p align="center">
+	<img src="image/HAN.png">
+</p>
+
+1. **Word Encoder**. Encoding by **bidirectional GRU**, an annotation for a given word is obtained by concatenating the forward hidden state and backward hidden state, which summarizes the information of the whole sentence centered around word in current time step.
+2. **Word Attention**. By a one-layer **MLP** and softmax function, it is enable to calculate normalized importance weights over the previous word annotations. Then, compute the sentence vector as a **weighted sum** of the word annotations based on the weights.
+3. **Sentence Encoder**. In a similar way with word encoder, use a **bidirectional GRU** to encode the sentences to get an annotation for a sentence.
+4. **Sentence Attention**. Similar with word attention, use a one-layer **MLP** and softmax function to get the weights over sentence annotations. Then, calculate a **weighted sum** of the sentence annotations based on the weights to get the document vector.
+5. **Document Classification**. Use the **softmax** function to calculate the probability of all classes.
+
+#### 6.2 Implementation Here
+
+The implementation of attention here is based on FeedForwardAttention, which is the same as the attention in TextAttBiRNN.
+
+Network structure of HAN: Embedding -> BidirectionalRNN (BidirectionalLSTM/BidirectionalGRU) -> Attention -> BidirectionalRNN (BidirectionalLSTM/BidirectionalGRU) -> Attention -> FullyConnectedLayer -> Sigmoid/Softmax
+
+The TimeDistributed wrapper is used on the second BidirectionalRNN, since the parameters before this layer are expected to be shared on the time step dimension.
+
 ### To Be Continued...
 
 ## Reference
@@ -116,3 +149,5 @@ Network structure of TextAttBiRNN: Embedding -> BidirectionalRNN (BidirectionalL
 6. [Neural Machine Translation by Jointly Learning to Align and Translate](https://arxiv.org/pdf/1409.0473.pdf)
 7. [Feed-Forward Networks with Attention Can Solve Some Long-Term Memory Problems](https://arxiv.org/pdf/1512.08756.pdf)
 8. [cbaziotis's Attention](https://gist.github.com/cbaziotis/6428df359af27d58078ca5ed9792bd6d)
+9. [Hierarchical Attention Networks for Document Classification](http://www.aclweb.org/anthology/N16-1174)
+10. [Richard's HAN](https://richliao.github.io/supervised/classification/2016/12/26/textclassifier-HATN/)
