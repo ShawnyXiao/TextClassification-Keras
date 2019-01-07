@@ -58,7 +58,7 @@ TextCNN was proposed in the paper [Convolutional Neural Networks for Sentence Cl
 1. Represent sentence with **static and non-static channels**.
 2. **Convolve** with multiple filter widths and feature maps.
 3. Use **max-over-time pooling**.
-4. Use **fully connected layer** with **dropout** and **softmax** ouput
+4. Use **fully connected layer** with **dropout** and **softmax** ouput.
 
 #### 2.2 Implementation Here
 
