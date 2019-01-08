@@ -25,7 +25,6 @@ class TextCNN(object):
             c = GlobalMaxPooling1D()(c)
             convs.append(c)
         x = Concatenate()(convs)
-        x = Dropout(0.5)(x)
 
         output = Dense(self.class_num, activation=self.last_activation)(x)
         model = Model(inputs=input, outputs=output)
