@@ -48,7 +48,11 @@ FastText was proposed in the paper [Bag of Tricks for Efficient Text Classificat
 
 #### 1.2 Implementation Here
 
-Network structure of FastText: Embedding -> AveragePooling -> FullyConnectedLayer -> Sigmoid/Softmax
+Network structure of FastText:
+
+<p align="center">
+	<img src="image/FastText_network_structure.png">
+</p>
 
 ### 2 TextCNN
 
@@ -67,7 +71,11 @@ TextCNN was proposed in the paper [Convolutional Neural Networks for Sentence Cl
 
 #### 2.2 Implementation Here
 
-Network structure of TextCNN: Embedding -> MultiConvolution -> MaxPooling -> FullyConnectedLayer -> Sigmoid/Softmax
+Network structure of TextCNN:
+
+<p align="center">
+	<img src="image/TextCNN_network_structure.png">
+</p>
 
 ### 3 TextRNN
 
@@ -81,13 +89,21 @@ TextRNN has been mentioned in the paper [Recurrent Neural Network for Text Class
 
 #### 3.2 Implementation Here
 
-Network structure of TextRNN: Embedding -> RNN (LSTM/GRU) -> FullyConnectedLayer -> Sigmoid/Softmax
+Network structure of TextRNN:
+
+<p align="center">
+	<img src="image/TextRNN_network_structure.png">
+</p>
 
 ### 4 TextBiRNN
 
 TextBiRNN is an improved model based on TextRNN. It improves the RNN layer in the network structure into a bidirectional RNN layer. It is hoped that not only the forward encoding information but also the reverse encoding information can be considered. No related papers have been found yet.
 
-Network structure of TextBiRNN: Embedding -> BidirectionalRNN (BidirectionalLSTM/BidirectionalGRU) -> FullyConnectedLayer -> Sigmoid/Softmax
+Network structure of TextBiRNN:
+
+<p align="center">
+	<img src="image/TextBiRNN_network_structure.png">
+</p>
 
 ### 5 TextAttBiRNN
 
@@ -111,7 +127,11 @@ Function `a`, a learnable function, is recognized as a **feed forward network**.
 
 The implementation of attention is not described here, please refer to the source code directly.
 
-Network structure of TextAttBiRNN: Embedding -> BidirectionalRNN (BidirectionalLSTM/BidirectionalGRU) -> Attention -> FullyConnectedLayer -> Sigmoid/Softmax
+Network structure of TextAttBiRNN:
+
+<p align="center">
+	<img src="image/TextAttBiRNN_network_structure.png">
+</p>
 
 ### 6 HAN
 
@@ -133,9 +153,13 @@ HAN was proposed in the paper [Hierarchical Attention Networks for Document Clas
 
 The implementation of attention here is based on FeedForwardAttention, which is the same as the attention in TextAttBiRNN.
 
-Network structure of HAN: Embedding -> BidirectionalRNN (BidirectionalLSTM/BidirectionalGRU) -> Attention -> BidirectionalRNN (BidirectionalLSTM/BidirectionalGRU) -> Attention -> FullyConnectedLayer -> Sigmoid/Softmax
+Network structure of HAN:
 
-The TimeDistributed wrapper is used on the second BidirectionalRNN, since the parameters before this layer are expected to be shared on the time step dimension.
+<p align="center">
+	<img src="image/HAN_network_structure.png">
+</p>
+
+The TimeDistributed wrapper is used here, since the parameters of the Embedding, Bidirectional RNN, and Attention layers are expected to be shared on the time step dimension.
 
 ### To Be Continued...
 
