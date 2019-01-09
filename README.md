@@ -13,6 +13,7 @@ This code repository implements a variety of **deep learning models** for **text
     4. [TextBiRNN](#4-textbirnn)
     5. [TextAttBiRNN](#5-textattbirnn)
     6. [HAN](#6-han)
+    7. [RCNN](#7-rcnn)
     999. [To Be Continued...](#to-be-continued)
 4. [Reference](#reference)
 
@@ -160,6 +161,27 @@ Network structure of HAN:
 </p>
 
 The TimeDistributed wrapper is used here, since the parameters of the Embedding, Bidirectional RNN, and Attention layers are expected to be shared on the time step dimension.
+
+### 7 RCNN
+
+RCNN was proposed in the paper [Recurrent Convolutional Neural Networks for Text Classification](https://www.aaai.org/ocs/index.php/AAAI/AAAI15/paper/view/9745/9552).
+
+#### 7.1 Description in Paper
+
+<p align="center">
+	<img src="image/RCNN.png">
+</p>
+
+1. **Word Representation Learning**. RCNN uses a recurrent structure, which is a **bi-directional recurrent neural network**, to capture the contexts. Then, combine the word and its context to present the word. And apply a **linear transformation** together with the `tanh` activation fucntion to the representation.
+2. **Text Representation Learning**. When all of the representations of words are calculated, it applys a element-wise **max-pooling** layer in order to capture the most important information throughout the entire text. Finally, do the **linear transformation** and apply the **softmax** function.
+
+#### 7.2 Implementation Here
+
+Network structure of RCNN:
+
+<p align="center">
+	<img src="image/RCNN_network_structure.png">
+</p>
 
 ### To Be Continued...
 
