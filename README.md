@@ -14,6 +14,7 @@ This code repository implements a variety of **deep learning models** for **text
     5. [TextAttBiRNN](#5-textattbirnn)
     6. [HAN](#6-han)
     7. [RCNN](#7-rcnn)
+    8. [RCNNVariant](#8-rcnnvariant)
     999. [To Be Continued...](#to-be-continued)
 4. [Reference](#reference)
 
@@ -181,6 +182,22 @@ Network structure of RCNN:
 
 <p align="center">
 	<img src="image/RCNN_network_structure.png">
+</p>
+
+### 8 RCNNVariant
+
+RCNNVariant is an improved model based on RCNN with the following improvements. No related papers have been found yet.
+
+1. The three inputs are changed to **single input**. The input of the left and right contexts is removed.
+2. Use **bidirectional LSTM/GRU** instead of traditional RNN for encoding context.
+3. Use **multi-channel CNN** to represent the semantic vectors. 
+4. Replace the Tanh activation layer with the **ReLU activation layer**.
+5. Use both **AveragePooling** and **MaxPooling**.
+
+Network structure of RCNNVariant:
+
+<p align="center">
+	<img src="image/RCNNVariant_network_structure.png">
 </p>
 
 ### To Be Continued...
