@@ -1,15 +1,15 @@
 # TextClassification
 
-This code repository implements a variety of **deep learning models** for **text classification** using the **Keras** framework, which includes: **FastText**, **TextCNN**, **TextRNN**, **TextBiRNN**, **TextAttBiRNN**, **HAN**, **RCNN**, **RCNNVariant**, etc. In addition to the model implementation, a simplified application is included.
+这个代码仓库使用 **Keras** 框架实现了多种用于**文本分类**的**深度学习模型**，其中包含的模型有：**FastText**, **TextCNN**, **TextRNN**, **TextBiRNN**, **TextAttBiRNN**, **HAN**, **RCNN**, **RCNNVariant** 等等。除了模型实现，还附带了简化的应用程序。
 
 - [English documents](README.md)
 - [中文文档](README-ZH.md)
 
-## Guidance
+## 向导
 
-1. [Environment](#environment)
-2. [Usage](#usage)
-3. [Model](#model)
+1. [环境](#环境)
+2. [使用说明](#使用说明)
+3. [模型](#模型)
     1. [FastText](#1-fasttext)
     2. [TextCNN](#2-textcnn)
     3. [TextRNN](#3-textrnn)
@@ -18,29 +18,29 @@ This code repository implements a variety of **deep learning models** for **text
     6. [HAN](#6-han)
     7. [RCNN](#7-rcnn)
     8. [RCNNVariant](#8-rcnnvariant)
-    999. [To Be Continued...](#to-be-continued)
-4. [Reference](#reference)
+    999. [未完待续……](#未完待续)
+4. [引用](#引用)
 
-## Environment
+## 环境
 
 - Python 3.6
 - NumPy 1.15.2
 - Keras 2.2.0
 - Tensorflow 1.8.0
 
-## Usage
+## 使用说明
 
-All codes are located in the directory ```/model```, and each kind of model has a corresponding directory in which the model and application are placed.
+代码部分都位于目录 `/model` 下，每种模型有相应的目录，该目录下放置了模型代码和应用代码。
 
-For example, the model and application of FastText are located under ```/model/FastText```, the model part is ```fast_text.py```, and the application part is ```main.py```.
+例如：FastText 的模型代码和应用代码都位于 `/model/FastText` 下，模型部分是 `fast_text.py`，应用部分是 `main.py`。
 
-## Model
+## 模型
 
 ### 1 FastText
 
-FastText was proposed in the paper [Bag of Tricks for Efficient Text Classification](https://arxiv.org/pdf/1607.01759.pdf).
+FastText 在论文 [Bag of Tricks for Efficient Text Classification](https://arxiv.org/pdf/1607.01759.pdf) 中被提出。
 
-#### 1.1 Description in Paper
+#### 1.1 论文的描述
 
 <p align="center">
 	<img src="image/FastText.png">
@@ -51,9 +51,9 @@ FastText was proposed in the paper [Bag of Tricks for Efficient Text Classificat
 3.	Text representation is in turn fed to a **linear classifier**.
 4.	Use the **softmax** function to compute the probability distribution over the predefined classes.
 
-#### 1.2 Implementation Here
+#### 1.2 此处的实现
 
-Network structure of FastText:
+FastText 的网络结构：
 
 <p align="center">
 	<img src="image/FastText_network_structure.png">
@@ -61,9 +61,9 @@ Network structure of FastText:
 
 ### 2 TextCNN
 
-TextCNN was proposed in the paper [Convolutional Neural Networks for Sentence Classification](http://www.aclweb.org/anthology/D14-1181).
+TextCNN 在论文 [Convolutional Neural Networks for Sentence Classification](http://www.aclweb.org/anthology/D14-1181) 中被提出。
 
-#### 2.1 Description in Paper
+#### 2.1 论文的描述
 
 <p align="center">
 	<img src="image/TextCNN.png">
@@ -74,9 +74,9 @@ TextCNN was proposed in the paper [Convolutional Neural Networks for Sentence Cl
 3. Use **max-over-time pooling**.
 4. Use **fully connected layer** with **dropout** and **softmax** ouput.
 
-#### 2.2 Implementation Here
+#### 2.2 此处的实现
 
-Network structure of TextCNN:
+TextCNN 的网络结构：
 
 <p align="center">
 	<img src="image/TextCNN_network_structure.png">
@@ -84,17 +84,17 @@ Network structure of TextCNN:
 
 ### 3 TextRNN
 
-TextRNN has been mentioned in the paper [Recurrent Neural Network for Text Classification with Multi-Task Learning](https://www.ijcai.org/Proceedings/16/Papers/408.pdf).
+TextRNN 在论文 [Recurrent Neural Network for Text Classification with Multi-Task Learning](https://www.ijcai.org/Proceedings/16/Papers/408.pdf) 中有被提到，但并不是这篇论文提出的。
 
-#### 3.1 Description in Paper
+#### 3.1 论文的描述
 
 <p align="center">
 	<img src="image/TextRNN.png">
 </p>
 
-#### 3.2 Implementation Here
+#### 3.2 此处的实现
 
-Network structure of TextRNN:
+TextRNN 的网络结构：
 
 <p align="center">
 	<img src="image/TextRNN_network_structure.png">
@@ -102,9 +102,9 @@ Network structure of TextRNN:
 
 ### 4 TextBiRNN
 
-TextBiRNN is an improved model based on TextRNN. It improves the RNN layer in the network structure into a bidirectional RNN layer. It is hoped that not only the forward encoding information but also the reverse encoding information can be considered. No related papers have been found yet.
+TextBiRNN 是基于 TextRNN 的改进版本，将网络结构中的 RNN 层改进成了双向（Bidirectional）的 RNN 层，希望不仅能考虑正向编码的信息，也能考虑反向编码的信息。暂时没有找到相关的论文。
 
-Network structure of TextBiRNN:
+TextBiRNN 的网络结构：
 
 <p align="center">
 	<img src="image/TextBiRNN_network_structure.png">
@@ -112,9 +112,9 @@ Network structure of TextBiRNN:
 
 ### 5 TextAttBiRNN
 
-TextAttBiRNN is an improved model which introduces attention mechanism based on TextBiRNN. For the representation vectors obtained by bidirectional RNN encoder, the model can focus on the information most relevant to decision making through the attention mechanism. The attention mechanism was first proposed in the paper [Neural Machine Translation by Jointly Learning to Align and Translate](https://arxiv.org/pdf/1409.0473.pdf), and the implementation of the attention mechanism here is referred to this paper [Feed-Forward Networks with Attention Can Solve Some Long-Term Memory Problems](https://arxiv.org/pdf/1512.08756.pdf).
+TextAttBiRNN 是基于 TextBiRNN 的改进版本，引入了注意力机制（Attention）。对于双向 RNN 编码得到的表征向量，模型能够通过注意力机制，关注与决策最相关的信息。其中注意力机制最先在论文 [Neural Machine Translation by Jointly Learning to Align and Translate](https://arxiv.org/pdf/1409.0473.pdf) 中被提出，而此处对于注意力机制的实现参照了论文 [Feed-Forward Networks with Attention Can Solve Some Long-Term Memory Problems](https://arxiv.org/pdf/1512.08756.pdf)。
 
-#### 5.1 Description in Paper
+#### 5.1 论文的描述
 
 <p align="center">
 	<img src="image/FeedForwardAttention.png">
@@ -128,11 +128,11 @@ In the paper [Feed-Forward Networks with Attention Can Solve Some Long-Term Memo
 
 Function `a`, a learnable function, is recognized as a **feed forward network**. In this formulation, attention can be seen as producing a fixed-length embedding `c` of the input sequence by computing an **adaptive weighted average** of the state sequence `h`.
 
-#### 5.2 Implementation Here
+#### 5.2 此处的实现
 
-The implementation of attention is not described here, please refer to the source code directly.
+Attention 的实现不做介绍，请直接查阅源代码。
 
-Network structure of TextAttBiRNN:
+TextAttBiRNN 的网络结构：
 
 <p align="center">
 	<img src="image/TextAttBiRNN_network_structure.png">
@@ -140,9 +140,9 @@ Network structure of TextAttBiRNN:
 
 ### 6 HAN
 
-HAN was proposed in the paper [Hierarchical Attention Networks for Document Classification](http://www.aclweb.org/anthology/N16-1174).
+HAN 在论文 [Hierarchical Attention Networks for Document Classification](http://www.aclweb.org/anthology/N16-1174) 中被提出。
 
-#### 6.1 Description in Paper
+#### 6.1 论文的描述
 
 <p align="center">
 	<img src="image/HAN.png">
@@ -154,23 +154,23 @@ HAN was proposed in the paper [Hierarchical Attention Networks for Document Clas
 4. **Sentence Attention**. Similar with word attention, use a one-layer **MLP** and softmax function to get the weights over sentence annotations. Then, calculate a **weighted sum** of the sentence annotations based on the weights to get the document vector.
 5. **Document Classification**. Use the **softmax** function to calculate the probability of all classes.
 
-#### 6.2 Implementation Here
+#### 6.2 此处的实现
 
-The implementation of attention here is based on FeedForwardAttention, which is the same as the attention in TextAttBiRNN.
+此处的 Attention 的实现使用了 FeedForwardAttention 的实现方式，与 TextAttBiRNN 中的 Attention 相同。
 
-Network structure of HAN:
+HAN 的网络结构：
 
 <p align="center">
 	<img src="image/HAN_network_structure.png">
 </p>
 
-The TimeDistributed wrapper is used here, since the parameters of the Embedding, Bidirectional RNN, and Attention layers are expected to be shared on the time step dimension.
+此处使用了 TimeDistributed 包装器，希望 Embedding、Bidirectional RNN 和 Attention 层的参数能够在时间步维度上共享。
 
 ### 7 RCNN
 
-RCNN was proposed in the paper [Recurrent Convolutional Neural Networks for Text Classification](https://www.aaai.org/ocs/index.php/AAAI/AAAI15/paper/view/9745/9552).
+RCNN 在论文 [Recurrent Convolutional Neural Networks for Text Classification](https://www.aaai.org/ocs/index.php/AAAI/AAAI15/paper/view/9745/9552) 中被提出。
 
-#### 7.1 Description in Paper
+#### 7.1 论文的描述
 
 <p align="center">
 	<img src="image/RCNN.png">
@@ -179,9 +179,9 @@ RCNN was proposed in the paper [Recurrent Convolutional Neural Networks for Text
 1. **Word Representation Learning**. RCNN uses a recurrent structure, which is a **bi-directional recurrent neural network**, to capture the contexts. Then, combine the word and its context to present the word. And apply a **linear transformation** together with the `tanh` activation fucntion to the representation.
 2. **Text Representation Learning**. When all of the representations of words are calculated, it applys a element-wise **max-pooling** layer in order to capture the most important information throughout the entire text. Finally, do the **linear transformation** and apply the **softmax** function.
 
-#### 7.2 Implementation Here
+#### 7.2 此处的实现
 
-Network structure of RCNN:
+RCNN 的网络结构：
 
 <p align="center">
 	<img src="image/RCNN_network_structure.png">
@@ -189,23 +189,23 @@ Network structure of RCNN:
 
 ### 8 RCNNVariant
 
-RCNNVariant is an improved model based on RCNN with the following improvements. No related papers have been found yet.
+RCNNVariant 是基于 RCNN 的改进版本，做了以下几点改进。暂时没有找到相关的论文。
 
-1. The three inputs are changed to **single input**. The input of the left and right contexts is removed.
-2. Use **bidirectional LSTM/GRU** instead of traditional RNN for encoding context.
-3. Use **multi-channel CNN** to represent the semantic vectors. 
-4. Replace the Tanh activation layer with the **ReLU activation layer**.
-5. Use both **AveragePooling** and **MaxPooling**.
+1. 三输入改成了**单输入**，移除了左右上下文的输入。
+2. 使用**双向的 LSTM/GRU** 取代传统 RNN 进行编码。
+3. 使用**多通道的 CNN** 进行语义向量的表征。
+4. 使用 **ReLU 激活层**取代 Tanh 激活层。
+5. 同时使用 **AveragePooling** 和 **MaxPooling** 进行池化。
 
-Network structure of RCNNVariant:
+RCNNVariant 的网络结构：
 
 <p align="center">
 	<img src="image/RCNNVariant_network_structure.png">
 </p>
 
-### To Be Continued...
+### 未完待续……
 
-## Reference
+## 引用
 
 1. [Bag of Tricks for Efficient Text Classification](https://arxiv.org/pdf/1607.01759.pdf)
 2. [Keras Example IMDB FastText](https://github.com/keras-team/keras/blob/master/examples/imdb_fasttext.py)
