@@ -1,4 +1,4 @@
-# TextClassification
+# TextClassification-Keras
 
 这个代码仓库使用 **Keras** 框架实现了多种用于**文本分类**的**深度学习模型**，其中包含的模型有：**FastText**, **TextCNN**, **TextRNN**, **TextBiRNN**, **TextAttBiRNN**, **HAN**, **RCNN**, **RCNNVariant** 等等。除了模型实现，还附带了简化的应用程序。
 
