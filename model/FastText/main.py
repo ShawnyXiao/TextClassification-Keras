@@ -1,9 +1,7 @@
-# coding=utf-8
-
 import numpy as np
-from keras.callbacks import EarlyStopping
-from keras.datasets import imdb
-from keras.preprocessing import sequence
+from tensorflow.keras.callbacks import EarlyStopping
+from tensorflow.keras.datasets import imdb
+from tensorflow.keras.preprocessing import sequence
 
 from fast_text import FastText
 
@@ -94,11 +92,11 @@ print('x_train shape:', x_train.shape)
 print('x_test shape:', x_test.shape)
 
 print('Build model...')
-model = FastText(maxlen, max_features, embedding_dims).get_model()
+model = FastText(maxlen, max_features, embedding_dims)
 model.compile('adam', 'binary_crossentropy', metrics=['accuracy'])
 
 print('Train...')
-early_stopping = EarlyStopping(monitor='val_acc', patience=3, mode='max')
+early_stopping = EarlyStopping(monitor='val_accuracy', patience=3, mode='max')
 model.fit(x_train, y_train,
           batch_size=batch_size,
           epochs=epochs,

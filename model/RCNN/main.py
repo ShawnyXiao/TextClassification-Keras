@@ -1,9 +1,7 @@
-# coding=utf-8
-
 import numpy as np
-from keras.callbacks import EarlyStopping
-from keras.datasets import imdb
-from keras.preprocessing import sequence
+from tensorflow.keras.callbacks import EarlyStopping
+from tensorflow.keras.datasets import imdb
+from tensorflow.keras.preprocessing import sequence
 
 from rcnn import RCNN
 
@@ -39,11 +37,11 @@ print('x_test_left shape:', x_test_left.shape)
 print('x_test_right shape:', x_test_right.shape)
 
 print('Build model...')
-model = RCNN(maxlen, max_features, embedding_dims).get_model()
+model = RCNN(maxlen, max_features, embedding_dims)
 model.compile('adam', 'binary_crossentropy', metrics=['accuracy'])
 
 print('Train...')
-early_stopping = EarlyStopping(monitor='val_acc', patience=3, mode='max')
+early_stopping = EarlyStopping(monitor='val_accuracy', patience=3, mode='max')
 model.fit([x_train_current, x_train_left, x_train_right], y_train,
           batch_size=batch_size,
           epochs=epochs,

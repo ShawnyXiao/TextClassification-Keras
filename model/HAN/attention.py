@@ -1,8 +1,6 @@
-# coding=utf-8
-
-from keras import backend as K
-from keras import initializers, regularizers, constraints
-from keras.engine.topology import Layer
+from tensorflow.keras import backend as K
+from tensorflow.keras import initializers, regularizers, constraints
+from tensorflow.keras.layers import Layer
 
 
 class Attention(Layer):
@@ -49,17 +47,17 @@ class Attention(Layer):
     def build(self, input_shape):
         assert len(input_shape) == 3
 
-        self.W = self.add_weight((input_shape[-1],),
+        self.W = self.add_weight(name='{}_W'.format(self.name),
+                                 shape=(input_shape[-1],),
                                  initializer=self.init,
-                                 name='{}_W'.format(self.name),
                                  regularizer=self.W_regularizer,
                                  constraint=self.W_constraint)
         self.features_dim = input_shape[-1]
 
         if self.bias:
-            self.b = self.add_weight((input_shape[1],),
+            self.b = self.add_weight(name='{}_b'.format(self.name),
+                                     shape=(input_shape[1],),
                                      initializer='zero',
-                                     name='{}_b'.format(self.name),
                                      regularizer=self.b_regularizer,
                                      constraint=self.b_constraint)
         else:

@@ -23,10 +23,9 @@ This code repository implements a variety of **deep learning models** for **text
 
 ## Environment
 
-- Python 3.6
-- NumPy 1.15.2
-- Keras 2.2.0
-- Tensorflow 1.8.0
+- Python 3.7
+- NumPy 1.17.2
+- Tensorflow 2.0.0
 
 ## Usage
 
