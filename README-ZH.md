@@ -25,7 +25,7 @@
 
 - Python 3.7
 - NumPy 1.17.2
-- Tensorflow 2.0.0
+- Tensorflow 2.0.1
 
 ## 使用说明
 
